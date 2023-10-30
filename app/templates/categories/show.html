@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %}
+{% block title %} show categories  {% endblock %}
+{% block body %}
+  
+  <div class="container">
+<div class="row">
+        <div class="col-12">
+            <div class="card mt-5" style="width: 23rem;">
+  <img src="{{ url_for('static', filename='categories/images/'+category.image)}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{category.name}}</h5>
+    <p class="card-text">{{category.description}}</p>
+    <p class="card-text">{{category.created_at}}</p>
+    <p class="card-text">{{category.updated_at}}</p>
+
+
+    <a href="{{url_for('categories.index')}}" class="btn btn-primary">Go Back</a>
+  </div>
+</div>
+        </div>
+</div>
+  </div>
+
+  <h1>Posts in this Category</h1>
+  <!-- {{ category.posts}} -->
+  {% for post in category.posts %}
+  <!-- <li> <a href="{{post.show_url}}">{{post.title}}</a> </li> -->
+  <li> <a href="{{url_for('posts.show',id=post.id)}}">{{post.title}} </a></li>
+
+  {% endfor %}
+
+{% endblock %}
